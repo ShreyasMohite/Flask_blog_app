@@ -1,0 +1,41 @@
+{%extends "base.html"%} {%block content%} {%for messages in get_flashed_messages()%}
+<div class="alert alert-primary">
+    <button type="button" class="close" data-dismiss="alert">&times;</button> {{messages}}
+
+</div>
+{%endfor%}
+
+
+
+<div class=" card mt-4 ">
+    <div class="card-body ">
+        <div class="media  ">
+
+            <div class="media-body mx-5 justify-content-center ">
+
+                <img class="img-thumbnail ml-5 rounded-circle   " style="width: 120px;height:120px;" src="{{image_file}} " alt="Generic placeholder image ">
+
+                <h2 class="mt-0 ">{{user.username}}</h2>
+                <h5>@{{user.email}}</h5>
+            </div>
+        </div>
+
+        <a href="{{url_for('Profileupdate')}}">
+            <button type="button" class="btn btn-secondary">Edit profile</button>
+        </a>
+
+
+
+    </div>
+</div>
+<div class="container mt-4">
+    <a href="{{url_for('post')}}">
+        <button type="button" class="btn btn-secondary">Add post</button>
+    </a>
+</div>
+
+
+
+
+
+{%endblock%}

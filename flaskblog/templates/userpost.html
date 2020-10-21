@@ -1,0 +1,41 @@
+{%extends "base.html"%} {%block content%} {%for messages in get_flashed_messages()%}
+<div class="alert alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button> {{messages}}
+
+</div>
+{%endfor%}
+
+
+<div class="row">
+    <div class="col-md-8 col-sm-12 mt-3">
+        <h1 class="mb-3"> Post by {{user.username}} total {{posts.total}} </h1>
+        {%for post in posts.items%}
+        <div class="card text-white bg-dark mb-3">
+            <img class="rounded-circle " style="width:90px;height:70px;padding:10px; " src="{{url_for( 'static',filename='pictures/' +post.author.image_file)}} " alt=" ">
+            <a href="#">
+                <h6>{{post.author.username}}</h6>
+            </a>
+            <p class="ml-3">{{post.date_posted.strftime('%Y-%m-%d')}}</p>
+            <div class="card-header ">
+                <a href="{{url_for('Username',username=post.author.username)}} ">
+                    <h5 class="p-3 ">{{post.title}}</h5>
+                </a>
+            </div>
+            <div class="media ">
+                <div class="media-body p-3 ">
+                    {{post.content}}
+                </div>
+            </div>
+        </div>
+        {%endfor%} {%for page_num in posts.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2)%} {%if page_num%} {%if posts.page==page_num%}
+        <a class="btn btn-info mb-4" href="{{url_for('Username',username=user.username,page=page_num)}}">{{page_num}}</a> {%else%}
+        <a class="btn btn-outline-info mb-4" href="{{url_for('Username',username=user.username,page=page_num)}}">{{page_num}}</a> {%endif%} {%else%} --- {%endif%} {%endfor%}
+    </div>
+    <div class="col-md-4">
+        hello
+    </div>
+</div>
+
+
+
+{%endblock%}

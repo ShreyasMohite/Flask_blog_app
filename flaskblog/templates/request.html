@@ -1,0 +1,27 @@
+{%extends "logbase.html"%} {%block content%} {%for messages in get_flashed_messages()%}
+<div class="alert alert-primary">
+    <button type="button" class="close" data-dismiss="alert">&times;</button> {{messages}}
+
+</div>
+{%endfor%}
+
+
+<div class="content-section">
+    <form action="" method="POST">
+        {{form.hidden_tag()}}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Are You Sure</legend>
+            <div class="form-group">
+                {{form.email.label(class="form-control-label")}} {{form.email(class="form-control-label form-control",placeholder="Write Your Email")}}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{form.submit(class="btn btn-outline-info")}}
+        </div>
+    </form>
+</div>
+
+
+
+
+{%endblock%}
